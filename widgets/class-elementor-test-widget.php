@@ -59,6 +59,45 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 			],
 		);
 
+		$this->add_control(
+				'emoji_text',
+			[
+				'label' => 'Text with emoji',
+				'type' => 'emojionearea',
+				'default' => 'Here you can write content with emojis.'
+			]
+		);
+
+		$this->add_control(
+				'select_opt',
+				[
+					'label'	=> 'Select Fruit',
+					'type' => \Elementor\Controls_Manager::SELECT,
+					'default' => 'Orange',
+					'options' => [
+							'Orange'=>'Orange',
+							'Apple'=>'Apple',
+							'Pineapple'=>'Pineapple',
+							'Mango'=>'Mango',
+					],
+				]
+		);
+
+		$this->add_control(
+				'select_adv',
+				[
+					'label'=>'Select Position',
+					'type'=>\Elementor\Controls_Manager::SELECT2,
+					'default'=>['Top'],
+					'options'=>[
+						'Top'=>'Top',
+						'Middle'=>'Middle',
+						'Bottom'=>'Bottom',
+					],
+					'multiple'=>true,
+				],
+		);
+
 		$this->end_controls_section();
 
 	}
@@ -70,6 +109,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 		$this->add_inline_editing_attributes('main_heading', 'basic');
 		$this->add_inline_editing_attributes('content_heading', 'basic');
 		$this->add_inline_editing_attributes('content', 'advanced');
+
 		$this->add_render_attribute(
 			'main_heading',
 			[
@@ -102,6 +142,14 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 				<div <?php echo $this->get_render_attribute_string( 'content'); ?>>
 					<?php echo $settings['content'] ?>
 				</div>
+				<div>
+					<?php echo $settings['select_opt'] ?>
+				</div>
+					<?php
+						foreach ($settings['select_adv'] as $position){
+							echo '<div>' . $position . '</div>';
+						}
+					?>
 			</div>
 		</div>
 
@@ -115,6 +163,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 		view.addInlineEditingAttributes( 'main_heading', 'basic' );
 		view.addInlineEditingAttributes( 'content_heading', 'basic' );
 		view.addInlineEditingAttributes( 'content', 'advanced' );
+
 			view.addRenderAttribute(
 				'main_heading',
 				{
@@ -145,6 +194,16 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 				</div>
 				<div {{{ view.getRenderAttributeString( 'content' ) }}}>
 					{{{ settings.content }}}
+				</div>
+				<div>
+					{{{settings.select_opt}}}
+				</div>
+				<div>
+					<#
+						_.each(settings.select_adv, function(position){
+							{{{position}}}
+						});
+					#>
 				</div>
 			</div>
 		</div>

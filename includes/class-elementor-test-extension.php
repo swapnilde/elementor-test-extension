@@ -109,13 +109,13 @@ final class Elementor_Test_Extension {
 
 		require_once( BSF_ETE_DIRPATH . '/controls/class-test-control.php' );
 
-		\Elementor\Plugin::$instance->controls_manager->register_control( 'control-type-', new \Test_Control() );
+		\Elementor\Plugin::$instance->controls_manager->register_control( 'emojionearea', new \Test_Control() );
 
 	}
 
 	public function widget_styles(){
-		wp_enqueue_style( 'test-widget', BSF_ETE_URLPATH . '/assets/test-widget.css' );
-		wp_enqueue_style( 'repeater-widget', BSF_ETE_URLPATH . '/assets/repeater-widget.css' );
+		wp_enqueue_style( 'test-widget', BSF_ETE_URLPATH . '/assets/css/test-widget.css' );
+		wp_enqueue_style( 'repeater-widget', BSF_ETE_URLPATH . '/assets/css/repeater-widget.css' );
 	}
 
 }

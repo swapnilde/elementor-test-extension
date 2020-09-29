@@ -8,18 +8,22 @@ class Test_Control extends \Elementor\Base_Data_Control {
 
 	public function enqueue() {
 
+		wp_enqueue_style( 'emojionearea', 'https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.css', [], '3.4.1' );
+
+		wp_register_script( 'emojionearea', 'https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.js', [], '3.4.1' );
+		wp_enqueue_script( 'emojionearea-control', BSF_ETE_URLPATH . '/assets/js/emojionearea-control.js', [ 'emojionearea', 'jquery' ], '1.0.0' );
 	}
 
 	protected function get_default_settings() {
 		return [
 			'label_block' => true,
 			'rows' => 3,
-			//'emojionearea_options' => [],
+			'emojionearea_options' => [],
 		];
 	}
 
 	public function content_template() {
-		$control_uid = $this->get_control_uid('t-area');
+		$control_uid = $this->get_control_uid();
 		?>
 		<div class="elementor-control-field">
 			<label for="<?php echo esc_attr( $control_uid ); ?>" class="elementor-control-title">{{{ data.label }}}</label>
