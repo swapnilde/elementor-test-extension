@@ -80,6 +80,39 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+				'style-section',
+				[
+						'label'=>'Repeater Styles',
+					'tab'=> \Elementor\Controls_Manager::TAB_STYLE,
+				],
+		);
+
+		$this->add_control( 'popover_toggle',
+			[
+				'label' => 'Box',
+				'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
+				'label_off' => 'Default',
+				'label_on' => 'Custom',
+				'return_value' => 'yes',
+			]
+		);
+
+			$this->start_popover();
+
+				$this->add_control(
+					'hover_animation',
+					[
+						'label' => 'Hover Animation',
+						'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
+						'default'=>'float',
+					]
+				);
+
+			$this->end_popover();
+
+		$this->end_controls_section();
+
 	}
 
 	protected function render() {
@@ -88,7 +121,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 		echo '<div class="card-container card--fixedWidth">';
 		foreach ($settings['list'] as $setting){
 			?>
-				<div class="card elementor-repeater-item-<?php echo $setting['_id'] ?>">
+				<div class="card elementor-repeater-item-<?php echo $setting['_id'] ?> <?php echo 'elementor-animation-' . $settings['hover_animation']?>">
 				    <h6><?php echo $setting['list_title'] ?></h6>
 					<p><?php echo $setting['list_content'] ?></p>
 			    </div>
@@ -103,7 +136,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 		<# if ( settings.list.length ) { #>
 		<div class="card-container card--fixedWidth">
 			<# _.each( settings.list, function( item ) { #>
-			<div class="card elementor-repeater-item-{{ item._id }}">
+			<div class="card elementor-repeater-item-{{ item._id }} elementor-animation-{{settings.hover_animation}}">
 				<h6>{{{ item.list_title }}}</h6>
 				<p>{{{ item.list_content }}}</p>
 			</div>

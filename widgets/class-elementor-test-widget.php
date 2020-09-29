@@ -32,71 +32,107 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'main_heading',
-			[
-				'label' => 'Main Heading',
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => 'My Main Heading',
-			],
+		$this->start_controls_tabs(
+				'content_tabs',
 		);
 
-		$this->add_control(
-			'content_heading',
-			[
-				'label' => 'Content Heading',
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => 'My Content Heading',
-			],
-		);
+			$this->start_controls_tab(
+					'content_regular_tab',
+					[
+							'label'=>'Regular Info',
+					]
+			);
 
-		$this->add_control(
-			'content',
-			[
-				'label' => 'Content',
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => 'This is a dummy content. Put your content here.',
-			],
-		);
+				$this->add_control(
+					'main_heading',
+					[
+						'label' => 'Main Heading',
+						'type' => \Elementor\Controls_Manager::TEXT,
+						'default' => 'My Main Heading',
+					],
+				);
 
-		$this->add_control(
-				'emoji_text',
-			[
-				'label' => 'Text with emoji',
-				'type' => 'emojionearea',
-				'default' => 'Here you can write content with emojis.'
-			]
-		);
+				$this->add_control(
+					'show_content_heading',
+					[
+						'label' => 'Show Content Heading',
+						'type' => \Elementor\Controls_Manager::SWITCHER,
+						'label_on' => 'Show',
+						'label_off' => 'Hide',
+						'return_value' => 'yes',
+						'default' => 'yes',
+					]
+				);
 
-		$this->add_control(
-				'select_opt',
-				[
-					'label'	=> 'Select Fruit',
-					'type' => \Elementor\Controls_Manager::SELECT,
-					'default' => 'Orange',
-					'options' => [
+				$this->add_control(
+					'content_heading',
+					[
+						'label' => 'Content Heading',
+						'type' => \Elementor\Controls_Manager::TEXT,
+						'default' => 'My Content Heading',
+					],
+				);
+
+				$this->add_control(
+					'content',
+					[
+						'label' => 'Content',
+						'type' => \Elementor\Controls_Manager::WYSIWYG,
+						'default' => 'This is a dummy content. Put your content here.',
+					],
+				);
+
+			$this->end_controls_tab();
+
+			$this->start_controls_tab(
+					'content_extra_tab',
+					[
+							'label'=>'Extra Info',
+					],
+			);
+
+				$this->add_control(
+					'emoji_text',
+					[
+						'label' => 'Text with emoji',
+						'type' => 'emojionearea',
+						'default' => 'Here you can write content with emojis.'
+					]
+				);
+
+				$this->add_control(
+					'select_opt',
+					[
+						'label'	=> 'Select Fruit',
+						'type' => \Elementor\Controls_Manager::SELECT,
+						'default' => 'Orange',
+						'options' => [
 							'Orange'=>'Orange',
 							'Apple'=>'Apple',
 							'Pineapple'=>'Pineapple',
 							'Mango'=>'Mango',
-					],
-				]
-		);
+						],
+					]
+				);
 
-		$this->add_control(
-				'select_adv',
-				[
-					'label'=>'Select Position',
-					'type'=>\Elementor\Controls_Manager::SELECT2,
-					'default'=>['Top'],
-					'options'=>[
-						'Top'=>'Top',
-						'Middle'=>'Middle',
-						'Bottom'=>'Bottom',
+				$this->add_control(
+					'select_adv',
+					[
+						'label'=>'Select Position',
+						'type'=>\Elementor\Controls_Manager::SELECT2,
+						'default'=>['Top'],
+						'options'=>[
+							'Top'=>'Top',
+							'Middle'=>'Middle',
+							'Bottom'=>'Bottom',
+						],
+						'multiple'=>true,
 					],
-					'multiple'=>true,
-				],
-		);
+				);
+
+			$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 
@@ -137,7 +173,11 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 			</div>
 			<div class="ad__content">
 				<div <?php echo $this->get_render_attribute_string( 'content_heading'); ?>>
-					<?php echo $settings['content_heading'] ?>
+					<?php
+						if('yes' === $settings['show_content_heading']){
+							echo $settings['content_heading'];
+						}
+					?>
 				</div>
 				<div <?php echo $this->get_render_attribute_string( 'content'); ?>>
 					<?php echo $settings['content'] ?>
@@ -190,7 +230,10 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 			</div>
 			<div class="ad__content">
 				<div {{{ view.getRenderAttributeString( 'content_heading' ) }}}>
-					{{{ settings.content_heading }}}
+					<# if('yes' === settings.show_content_heading){ #>
+							{{{ settings.content_heading }}}
+					<# }
+					#>
 				</div>
 				<div {{{ view.getRenderAttributeString( 'content' ) }}}>
 					{{{ settings.content }}}
@@ -200,9 +243,9 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 				</div>
 				<div>
 					<#
-						_.each(settings.select_adv, function(position){
+						_.each(settings.select_adv, function(position){ #>
 							{{{position}}}
-						});
+					<#	});
 					#>
 				</div>
 			</div>
