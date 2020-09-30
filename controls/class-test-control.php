@@ -5,6 +5,10 @@
  * @package     elementor-test-extension
  */
 
+namespace ElementorTestExtension\Controls;
+
+use \Elementor\Base_Data_Control;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -16,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Test_Control extends \Elementor\Base_Data_Control {
+class Test_Control extends Base_Data_Control {
 
 	/**
 	 * Retrieve the control type, in this case `emojionearea`.

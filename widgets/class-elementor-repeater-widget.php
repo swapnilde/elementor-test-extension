@@ -5,6 +5,11 @@
  * @package     elementor-test-extension
  */
 
+namespace ElementorTestExtension\Widgets;
+
+use Elementor\Widget_Base;
+use Elementor\Controls_Manager;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -14,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
+class Elementor_Repeater_Widget extends Widget_Base {
 
 	/**
 	 * Retrieve widget name.
@@ -73,7 +78,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 			'content_section',
 			array(
 				'label' => 'BSF Repeater',
-				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
 
@@ -83,7 +88,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 			'list_title',
 			array(
 				'label'   => 'Title',
-				'type'    => \Elementor\Controls_Manager::TEXT,
+				'type'    => Controls_Manager::TEXT,
 				'default' => 'List Title',
 			)
 		);
@@ -92,7 +97,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 			'list_content',
 			array(
 				'label'   => 'Content',
-				'type'    => \Elementor\Controls_Manager::WYSIWYG,
+				'type'    => Controls_Manager::WYSIWYG,
 				'default' => 'List Content',
 			)
 		);
@@ -101,7 +106,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 			'list_color',
 			array(
 				'label'     => 'Color',
-				'type'      => \Elementor\Controls_Manager::COLOR,
+				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
 				),
@@ -112,7 +117,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 			'list',
 			array(
 				'label'   => 'Repeater List',
-				'type'    => \Elementor\Controls_Manager::REPEATER,
+				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
 				'default' => array(
 					array(
@@ -133,7 +138,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 			'style-section',
 			array(
 				'label' => 'Repeater Styles',
-				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
@@ -141,7 +146,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 			'popover_toggle',
 			array(
 				'label'        => 'Box',
-				'type'         => \Elementor\Controls_Manager::POPOVER_TOGGLE,
+				'type'         => Controls_Manager::POPOVER_TOGGLE,
 				'label_off'    => 'Default',
 				'label_on'     => 'Custom',
 				'return_value' => 'yes',
@@ -154,7 +159,7 @@ class Elementor_Repeater_Widget extends \Elementor\Widget_Base {
 					'hover_animation',
 					array(
 						'label'   => 'Hover Animation',
-						'type'    => \Elementor\Controls_Manager::HOVER_ANIMATION,
+						'type'    => Controls_Manager::HOVER_ANIMATION,
 						'default' => 'float',
 					)
 				);

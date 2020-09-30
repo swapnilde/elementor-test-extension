@@ -5,6 +5,11 @@
  * @package     elementor-test-extension
  */
 
+namespace ElementorTestExtension\Widgets;
+
+use Elementor\Widget_Base;
+use Elementor\Controls_Manager;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -14,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Elementor_Test_Widget extends \Elementor\Widget_Base {
+class Elementor_Test_Widget extends Widget_Base {
 
 	/**
 	 * Retrieve widget name.
@@ -73,7 +78,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 			'content_section',
 			array(
 				'label' => 'BSF Ad',
-				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
 
@@ -92,7 +97,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 					'main_heading',
 					array(
 						'label'   => 'Main Heading',
-						'type'    => \Elementor\Controls_Manager::TEXT,
+						'type'    => Controls_Manager::TEXT,
 						'default' => 'My Main Heading',
 					)
 				);
@@ -101,7 +106,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 					'show_content_heading',
 					array(
 						'label'        => 'Show Content Heading',
-						'type'         => \Elementor\Controls_Manager::SWITCHER,
+						'type'         => Controls_Manager::SWITCHER,
 						'label_on'     => 'Show',
 						'label_off'    => 'Hide',
 						'return_value' => 'yes',
@@ -113,7 +118,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 					'content_heading',
 					array(
 						'label'   => 'Content Heading',
-						'type'    => \Elementor\Controls_Manager::TEXT,
+						'type'    => Controls_Manager::TEXT,
 						'default' => 'My Content Heading',
 					)
 				);
@@ -122,7 +127,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 					'content',
 					array(
 						'label'   => 'Content',
-						'type'    => \Elementor\Controls_Manager::WYSIWYG,
+						'type'    => Controls_Manager::WYSIWYG,
 						'default' => 'This is a dummy content. Put your content here.',
 					)
 				);
@@ -149,7 +154,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 					'select_opt',
 					array(
 						'label'   => 'Select Fruit',
-						'type'    => \Elementor\Controls_Manager::SELECT,
+						'type'    => Controls_Manager::SELECT,
 						'default' => 'Orange',
 						'options' => array(
 							'Orange'    => 'Orange',
@@ -164,7 +169,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 					'select_adv',
 					array(
 						'label'    => 'Select Position',
-						'type'     => \Elementor\Controls_Manager::SELECT2,
+						'type'     => Controls_Manager::SELECT2,
 						'default'  => array( 'Top' ),
 						'options'  => array(
 							'Top'    => 'Top',

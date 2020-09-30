@@ -5,6 +5,10 @@
  * @package     elementor-test-extension
  */
 
+namespace ElementorTestExtension;
+
+use Elementor\Plugin;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -19,7 +23,7 @@ final class Elementor_Test_Extension {
 	/**
 	 * Class instance property
 	 *
-	 * @var instance
+	 * @var $instance
 	 *
 	 * @since 1.0.0
 	 */
@@ -173,8 +177,8 @@ final class Elementor_Test_Extension {
 		require_once BSF_ETE_DIRPATH . '/widgets/class-elementor-test-widget.php';
 		require_once BSF_ETE_DIRPATH . '/widgets/class-elementor-repeater-widget.php';
 
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Test_Widget() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Repeater_Widget() );
+		Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Test_Widget() );
+		Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Repeater_Widget() );
 
 	}
 
@@ -187,7 +191,7 @@ final class Elementor_Test_Extension {
 
 		require_once BSF_ETE_DIRPATH . '/controls/class-test-control.php';
 
-		\Elementor\Plugin::$instance->controls_manager->register_control( 'emojionearea', new \Test_Control() );
+		Plugin::$instance->controls_manager->register_control( 'emojionearea', new Controls\Test_Control() );
 
 	}
 
