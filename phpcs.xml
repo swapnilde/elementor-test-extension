@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards for Plugins">
+    <description>Generally-applicable sniffs for WordPress plugins</description>
+
+    <config name="testVersion" value="5.4-"/>
+    <rule ref="PHPCompatibility">
+        <include-pattern>*\.php$</include-pattern>
+    </rule>
+
+    <rule ref="WordPress-Core" />
+    <rule ref="WordPress-Docs" />
+    <rule ref="WordPress-Extra" />
+
+    <arg name="extensions" value="php"/>
+    <file>.</file>
+
+    <arg value="s"/>
+
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+</ruleset>
