@@ -12,10 +12,8 @@ Elementor Test Extension
 
 Provides useful widgets for Elementor page builder.
 
-Consist of two widgets
-1. Widget for simple ad.
-2. Widget for repeating elements.
-
 Widget Names:
 1. BSF Insert Ad
 2. BSF Repeater
+3. ETE Condition content
+4. ETE Responsive content
