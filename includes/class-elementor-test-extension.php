@@ -176,9 +176,13 @@ final class Elementor_Test_Extension {
 
 		require_once BSF_ETE_DIRPATH . '/widgets/class-elementor-test-widget.php';
 		require_once BSF_ETE_DIRPATH . '/widgets/class-elementor-repeater-widget.php';
+		require_once BSF_ETE_DIRPATH . '/widgets/class-condition-widget.php';
+		require_once BSF_ETE_DIRPATH . '/widgets/class-responsive-widget.php';
 
 		Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Test_Widget() );
 		Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Elementor_Repeater_Widget() );
+		Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Condition_Widget() );
+		Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Responsive_Widget() );
 
 	}
 

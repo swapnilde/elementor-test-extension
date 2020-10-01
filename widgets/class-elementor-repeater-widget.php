@@ -180,7 +180,7 @@ class Elementor_Repeater_Widget extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		echo esc_html__( '<div class="card-container card--fixedWidth">', 'ele-test-ext' );
+		echo '<div class="card-container card--fixedWidth">';
 		foreach ( $settings['list'] as $setting ) {
 			//phpcs:disable
 			?>
